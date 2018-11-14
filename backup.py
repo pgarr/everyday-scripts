@@ -17,8 +17,16 @@ def backup_directory(this_dir):
 
 def zip_this_dir(path, zipped_file):
     for root, dirs, files in os.walk(path):
+        if root.replace(path, '') == '':
+            prefix = ''
+        else:
+            prefix = root.replace(path, '') + '/'
+            if prefix[0] == '/':
+                prefix = prefix[1:]
         for file in files:
-            zipped_file.write(os.path.join(root, file), os.path.basename(os.path.normpath(path)) + "\\" + file)
+            actual_file_path = root + '/' + file
+            zipped_file_path = prefix + file
+            zipped_file.write(actual_file_path, zipped_file_path)
 
 
 def make_zip(folder_to_zip, destination, zip_file_name):
@@ -31,7 +39,7 @@ main_dir = input("Please enter backups main directory:")
 directory = backup_directory(main_dir)
 
 for dir_ in BACKUP_THIS_DIRS:
-    make_zip(dir_, directory, 'zipfile.zip')
+    make_zip(dir_, directory, 'zipfile.zip')  # TODO: dodać nazwę, tak jak ostatni folder ścieżki, a nie hardcoded
 
     #
     # try:
