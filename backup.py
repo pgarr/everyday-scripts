@@ -1,10 +1,9 @@
 import datetime
 import os
-import shutil
 import zipfile
 
-# BACKUP_THIS_DIRS = ("D:\pgarr",)
-BACKUP_THIS_DIRS = ("D:\pgarr\Documents\praca",)
+BACKUP_THIS_DIRS = ("D:\pgarr",)
+# BACKUP_THIS_DIRS = ("D:\pgarr\Documents\praca",)  # for tests
 
 
 def backup_directory(this_dir):
@@ -39,14 +38,5 @@ main_dir = input("Please enter backups main directory:")
 directory = backup_directory(main_dir)
 
 for dir_ in BACKUP_THIS_DIRS:
-    make_zip(dir_, directory, 'zipfile.zip')  # TODO: dodać nazwę, tak jak ostatni folder ścieżki, a nie hardcoded
-
-    #
-    # try:
-    #     for dir_ in BACKUP_THIS_DIRS:
-    #         zip_path = os.path.join(directory, 'Python.zip')
-    #         zipf = zipfile.ZipFile('Python.zip', 'w', zipfile.ZIP_DEFLATED)
-    #         zipdir(dir_, zipf)
-    #         zipf.close()
-    # except FileNotFoundError as e:
-    #     print(e)
+    name = os.path.basename(dir_) + '.zip'
+    make_zip(dir_, directory, name)
