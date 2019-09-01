@@ -45,7 +45,7 @@ def make_zip(folder_to_zip, destination, zip_file_name):
         zip_this_dir(folder_to_zip, zipped_file)
 
 
-logging.basicConfig(level=logging.INFO)  # TODO: lepsze logi, data, godzina, itp.
+logging.basicConfig(level=logging.INFO)  # TODO: lepsze logi, data, godzina, itp. - tworzenie pliku logów w miejscu backupu zamiast logowania do konsoli (info + warning/error)
 main_dir = input("Please enter backups main directory:")
 directory = backup_directory(main_dir)
 
